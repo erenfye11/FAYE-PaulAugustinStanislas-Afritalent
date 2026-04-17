@@ -178,24 +178,58 @@ body.dark .bento-item {
     background-color: #1f2937;
     color: #f9fafb;
 }
+/* ===== CARDS FREELANCES ===== */
 .carte-freelance .card {
-    border: none !important;
-    border-radius: var(--radius) !important;
-    box-shadow: var(--shadow);
+    border-radius: var(--rayon);
     transition: var(--transition);
-    overflow: hidden;
+    border: 2px solid transparent;
 }
+
 .carte-freelance .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+    border-color: var(--couleur-primaire);
 }
 
-.carte-freelance img {
-    border: 3px solid var(--primary);
-    padding: 3px;
-    transition: var(--transition);
+/* ===== CAROUSEL TEMOIGNAGES ===== */
+.carousel {
+    background: var(--couleur-gris);
+    border-radius: var(--rayon);
+    padding: 20px;
 }
 
-.carte-freelance:hover img {
-    transform: rotate(5deg) scale(1.05);
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+/* ===== TARIFS ===== */
+.plan-populaire {
+    border: 3px solid var(--couleur-primaire) !important;
+    transform: scale(1.05);
+}
+
+/* ===== BOUTON RETOUR EN HAUT ===== */
+#btn-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    z-index: 999;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+}
+
+/* ===== ANIMATIONS FADE-IN ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
