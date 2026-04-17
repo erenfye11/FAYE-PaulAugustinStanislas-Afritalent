@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelances — AfriTalent</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">AfriTalent</a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+                    ☰
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto">
+                        <li><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li><a class="nav-link active" href="freelances.html">Freelances</a></li>
+                        <li><a class="nav-link" href="tarifs.html">Tarifs</a></li>
+                        <li><a class="nav-link" href="about.html">À propos</a></li>
+                        <li><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li><a class="btn btn-primary ms-3" href="contact.html">Rejoindre AfriTalent</a></li>
+                         <li class="nav-item ms-lg-3">
+                           <button id="theme-btn" class="btn border-0 m-1">
+                                <i class="bi bi-moon-stars"></i>
+                            </button>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main style="margin-top:80px;">
+
+        <!-- TITRE -->
+        <section class="container py-5">
+            <h1 class="text-center mb-2">Nos Freelances</h1>
+            <p class="text-center mb-5">Découvrez nos talents tech disponibles en Afrique</p>
+
+            <!-- FILTRES -->
+            <div class="text-center mb-4" id="filtres">
+                <button class="btn filtre-btn btn-primary m-1 filtre-btn active" data-filtre="tous">Tous</button>
+                <button class="btn filtre-btn btn-outline-primary m-1 filtre-btn" data-filtre="dev">Développement Web</button>
+                <button class="btn filtre-btn btn-outline-primary m-1 filtre-btn" data-filtre="design">Design UI/UX</button>
+                <button class="btn filtre-btn  btn-outline-primary m-1 filtre-btn" data-filtre="marketing">Marketing Digital</button>
+                <button class="btn filtre-btn  btn-outline-primary m-1 filtre-btn" data-filtre="data">Data & IA</button>
+                <button class="btn filtre-btn  btn-outline-primary m-1 filtre-btn" data-filtre="redaction">Rédaction Tech</button>
+                <button class="btn filtre-btn  btn-outline-primary m-1 filtre-btn" data-filtre="devops">DevOps & Cloud</button>
+            </div>
+
+            <!-- GRILLE FREELANCES -->
+           <div class="row g-4">
+    <div class="col-lg-4 col-md-6 carte-freelance">
+        <div class="card h-100 p-4 shadow-sm border-0">
+            <img src="images/avatar1.avif" class="rounded-circle mx-auto d-block mb-3" width="100" alt="Aminata Diallo">
+            <h5 class="text-center fw-bold">Aminata Diallo</h5>
+            <p class="text-center text-primary fw-medium">Développeuse Web</p>
+            <p class="small text-muted text-center">Spécialisée en React et Node.js avec 4 ans d'expérience.</p>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold">15 000 FCFA/h</span>
+                <button class="btn btn-primary btn-sm rounded-3">Voir profil</button>
+            </div>
+        </div>
+    </div>
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6f42c1;
+    --dark-color: #000000;
+    --light-color: #ffffff;
+    --bg-light: #ffffff;
+    --title-font: 'Lexend', sans-serif;
+    --body-font: 'Inter', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+/* 3. STYLES DE BASE & RESET [cite: 166] */
+body {
+    font-family: var(--body-font);
+    background-color: var(--light-color);
+    margin: 0;
+    transition: var(--transition-speed);
+}
+
+h1, h2, h3 {
+    font-family: var(--title-font);
+}
+
+/* 4. TES STYLES ADAPTÉS AVEC LES VARIABLES */
+.dark {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+.card {
+    margin: 10px;
+    transition: var(--transition-speed);
+}
+
+.card:hover {
+    transform: scale(1.05); /* Effet hover demandé [cite: 173] */
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-color);
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+/* Style pour la section Bento Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+    gap: 20px;
+}
+
+.bento-item {
+    background: var(--light-color);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* On fait en sorte qu'un élément soit plus grand que les autres */
+.bento-item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+/* Carte Freelance (Effet Hover Commit 4) */
+.carte-freelance .card {
+    border: none !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.carte-freelance .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.carte-freelance img {
+    border: 3px solid var(--primary);
+    padding: 3px;
+    transition: var(--transition);
+}
+
+.carte-freelance:hover img {
+    transform: rotate(5deg) scale(1.05);
+}
+/* =========================================
+   10. RESPONSIVE DESIGN (COMMIT 5)
+   ========================================= */
+
+@media (max-width: 992px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+        grid-auto-rows: auto;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
+        grid-auto-rows: auto;
+    }
+
+    .bento-large, .bento-tall, .bento-wide {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .hero {
+        padding: 100px 0 60px;
+        text-align: center;
+    }
+
+    .pricing-card.popular {
+        transform: scale(1); /* On enlève le zoom sur mobile pour éviter les bugs */
+        margin: 20px 0;
+    }
+}
