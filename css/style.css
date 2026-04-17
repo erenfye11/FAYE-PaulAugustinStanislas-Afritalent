@@ -1,73 +1,183 @@
+/* ===== VARIABLES CSS ===== */
 :root {
-    --primary-color: #0d6efd;
-    --secondary-color: #6f42c1;
-    --dark-color: #000000;
-    --light-color: #ffffff;
-    --bg-light: #ffffff;
-    --title-font: 'Lexend', sans-serif;
-    --body-font: 'Inter', sans-serif;
-    --transition-speed: 0.3s;
+    --couleur-primaire: #2563eb;
+    --couleur-secondaire: #1e40af;
+    --couleur-accent: #f59e0b;
+    --couleur-texte: #1f2937;
+    --couleur-fond: #ffffff;
+    --couleur-fond-sombre: #111827;
+    --couleur-gris: #f3f4f6;
+    --police-titre: 'Poppins', sans-serif;
+    --police-corps: 'Inter', sans-serif;
+    --ombre: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --rayon: 12px;
+    --transition: all 0.3s ease;
 }
 
-/* 3. STYLES DE BASE & RESET [cite: 166] */
-body {
-    font-family: var(--body-font);
-    background-color: var(--light-color);
+/* ===== RESET & BASE ===== */
+* {
     margin: 0;
-    transition: var(--transition-speed);
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1, h2, h3 {
-    font-family: var(--title-font);
+body {
+    font-family: var(--police-corps);
+    color: var(--couleur-texte);
+    background-color: var(--couleur-fond);
+    line-height: 1.6;
 }
 
-/* 4. TES STYLES ADAPTÉS AVEC LES VARIABLES */
-.dark {
-    background-color: var(--dark-color);
-    color: var(--light-color);
+h1, h2, h3, h4, h5 {
+    font-family: var(--police-titre);
+    font-weight: 700;
 }
 
-.card {
-    margin: 10px;
-    transition: var(--transition-speed);
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.card:hover {
-    transform: scale(1.05); /* Effet hover demandé [cite: 173] */
+/* ===== NAVBAR ===== */
+.navbar {
+    box-shadow: var(--ombre);
+    transition: var(--transition);
 }
 
+.navbar-brand {
+    font-family: var(--police-titre);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--couleur-primaire) !important;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--couleur-primaire) !important;
+}
+
+/* ===== HERO ===== */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--light-color);
+    background: linear-gradient(135deg, var(--couleur-primaire), var(--couleur-secondaire));
+    color: white;
     padding: 100px 20px;
     text-align: center;
 }
 
 .hero h1 {
     font-size: 3rem;
-    font-weight: bold;
+    font-weight: 800;
+    margin-bottom: 20px;
 }
-/* Style pour la section Bento Grid */
-.bento-grid {
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* ===== BENTO GRID ===== */
+.bento {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 200px;
+    grid-template-rows: auto auto;
     gap: 20px;
 }
 
 .bento-item {
-    background: var(--light-color);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: var(--couleur-gris);
+    border-radius: var(--rayon);
+    padding: 30px;
+    transition: var(--transition);
 }
 
-/* On fait en sorte qu'un élément soit plus grand que les autres */
-.bento-item-large {
+.bento-item:first-child {
     grid-column: span 2;
-    grid-row: span 2;
 }
-/* Carte Freelance (Effet Hover Commit 4) */
+
+.bento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--ombre);
+}
+
+.etape {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--couleur-primaire);
+}
+
+/* ===== CATEGORIES ===== */
+.categorie {
+    border-radius: var(--rayon);
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.categorie:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+    border-color: var(--couleur-primaire);
+    color: var(--couleur-primaire);
+}
+
+/* ===== CTA ===== */
+.cta {
+    background: linear-gradient(135deg, var(--couleur-accent), #d97706);
+    color: white;
+}
+
+.cta h2 {
+    font-size: 2rem;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: var(--couleur-fond-sombre);
+    color: #d1d5db;
+}
+
+footer h5 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+footer a {
+    color: #9ca3af;
+    transition: var(--transition);
+}
+
+footer a:hover {
+    color: white;
+}
+
+footer hr {
+    border-color: #374151;
+}
+
+/* ===== DARK MODE ===== */
+body.dark {
+    background-color: var(--couleur-fond-sombre);
+    color: #f9fafb;
+}
+
+body.dark .navbar {
+    background-color: #1f2937 !important;
+}
+
+body.dark .card {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+body.dark .bento-item {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
 .carte-freelance .card {
     border: none !important;
     border-radius: var(--radius) !important;
@@ -75,7 +185,6 @@ h1, h2, h3 {
     transition: var(--transition);
     overflow: hidden;
 }
-
 .carte-freelance .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
@@ -89,40 +198,4 @@ h1, h2, h3 {
 
 .carte-freelance:hover img {
     transform: rotate(5deg) scale(1.05);
-}
-/* =========================================
-   10. RESPONSIVE DESIGN (COMMIT 5)
-   ========================================= */
-
-@media (max-width: 992px) {
-    .bento-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
-        grid-auto-rows: auto;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .bento-grid {
-        grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
-        grid-auto-rows: auto;
-    }
-
-    .bento-large, .bento-tall, .bento-wide {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-
-    .hero {
-        padding: 100px 0 60px;
-        text-align: center;
-    }
-
-    .pricing-card.popular {
-        transform: scale(1); /* On enlève le zoom sur mobile pour éviter les bugs */
-        margin: 20px 0;
-    }
 }
