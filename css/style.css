@@ -233,3 +233,61 @@ body.dark .bento-item {
     opacity: 1;
     transform: translateY(0);
 }
+/* ===== RESPONSIVE — TABLETTE (768px) ===== */
+@media (max-width: 768px) {
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero {
+        padding: 60px 15px;
+    }
+
+    .bento {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-item:first-child {
+        grid-column: span 2;
+    }
+
+    .cta h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ===== RESPONSIVE — MOBILE (375px) ===== */
+@media (max-width: 375px) {
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero {
+        padding: 40px 10px;
+    }
+
+    .bento {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-item:first-child {
+        grid-column: span 1;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    #btn-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+    }
+}
