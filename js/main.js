@@ -1,114 +1,119 @@
-const counters = document.querySelectorAll(".counter");
+// ===== ANNÉE DYNAMIQUE =====
+document.getElementById('year').textContent = new Date().getFullYear();
 
-counters.forEach(counter => {
-    let update = () => {
-        let target = +counter.getAttribute("data-target");
-        let count = +counter.innerText;
+// ===== NAVBAR DYNAMIQUE AU SCROLL =====
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.style.backgroundColor = '#1e40af';
+        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+    } else {
+        navbar.style.backgroundColor = '';
+        navbar.style.boxShadow = '';
+    }
 
-        let increment = target / 100;
-
-        if (count < target) {
-            counter.innerText = Math.ceil(count + increment);
-            setTimeout(update, 20);
+    // Bouton retour en haut
+    const btnTop = document.getElementById('btn-top');
+    if (btnTop) {
+        if (window.scrollY > 300) {
+            btnTop.style.display = 'block';
         } else {
-            counter.innerText = target;
+            btnTop.style.display = 'none';
         }
-    };
-    update();
+    }
 });
-document.getElementById("filter")?.addEventListener("change", function() {
-    let value = this.value;
-    let cards = document.querySelectorAll(".freelancer");
 
-    cards.forEach(card => {
-        if (value === "all" || card.dataset.category === value) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
+// ===== BOUTON RETOUR EN HAUT =====
+const btnTop = document.getElementById('btn-top');
+if (btnTop) {
+    btnTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-});document.getElementById("contactForm")?.addEventListener("submit", function(e) {
-    e.preventDefault();
+}
 
-    let email = document.getElementById("email").value;
-    let message = document.getElementById("message").value;
-
-    if (!email.includes("@")) {
-        alert("Email invalide");
-        return;
-    }
-
-    if (message.length < 20) {
-        alert("Message trop court");
-        return;
-    }
-
-    alert("Message envoyé !");
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // === 1. GESTION DU DARK MODE (COMMIT 6) ===
-    const themeBtn = document.getElementById('theme-btn');
-    const body = document.body;
-
-    // Vérifier la préférence sauvegardée
+// ===== DARK MODE =====
+const btnDark = document.getElementById('btn-dark');
+if (btnDark) {
+    // Appliquer le thème sauvegardé
     if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        if(themeBtn) themeBtn.querySelector('i').classList.replace('bi-moon', 'bi-sun');
+        document.body.classList.add('dark');
+        btnDark.textContent = '☀️';
     }
 
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            
-            // Changer l'icône
-            const icon = themeBtn.querySelector('i');
-            if (isDark) {
-                icon.classList.replace('bi-moon', 'bi-sun');
-            } else {
-                icon.classList.replace('bi-sun', 'bi-moon');
-            }
-        });
-    }
-
-    // === 2. TES COMPTEURS ANIMÉS (Repris de ton code) ===
-    const counters = document.querySelectorAll(".counter");
-    counters.forEach(counter => {
-        const update = () => {
-            const target = +counter.getAttribute("data-target");
-            const count = +counter.innerText;
-            const increment = target / 100;
-
-            if (count < target) {
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(update, 20);
-            } else {
-                counter.innerText = target;
-            }
-        };
-        update();
+    btnDark.addEventListener('click', function() {
+        document.body.classList.toggle('dark');
+        if (document.body.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+            btnDark.textContent = '☀️';
+        } else {
+            localStorage.setItem('theme', 'light');
+            btnDark.textContent = '🌙';
+        }
     });
+}
 
-    // === 3. TON FILTRAGE (Adapté à tes boutons) ===
-    const filterButtons = document.querySelectorAll(".filtre-btn");
-    const cards = document.querySelectorAll(".carte-freelance");
+// ===== ANIMATIONS FADE-IN AU SCROLL =====
+const fadeEls = document.querySelectorAll('.fade-in');
+const observerFade = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
 
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Gérer l'état actif des boutons
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+fadeEls.forEach(function(el) {
+    observerFade.observe(el);
+});
 
-            const filterValue = btn.getAttribute('data-filtre');
+// ===== COMPTEURS ANIMÉS =====
+const compteurs = document.querySelectorAll('.counter');
+const observerCompteur = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            const target = parseInt(entry.target.getAttribute('data-target'));
+            let count = 0;
+            const step = Math.ceil(target / 100);
+            const timer = setInterval(function() {
+                count += step;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(timer);
+                }
+                entry.target.textContent = count.toLocaleString();
+            }, 20);
+            observerCompteur.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
 
-            cards.forEach(card => {
-                if (filterValue === "tous" || card.getAttribute('data-categorie') === filterValue) {
-                    card.style.display = "block";
+compteurs.forEach(function(c) {
+    observerCompteur.observe(c);
+});
+
+// ===== FILTRAGE FREELANCES =====
+const btnsFiltres = document.querySelectorAll('.filtre-btn');
+if (btnsFiltres.length > 0) {
+    btnsFiltres.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            // Changer le bouton actif
+            btnsFiltres.forEach(b => {
+                b.classList.remove('active', 'btn-primary');
+                b.classList.add('btn-outline-primary');
+            });
+            this.classList.add('active', 'btn-primary');
+            this.classList.remove('btn-outline-primary');
+
+            const filtre = this.getAttribute('data-filtre');
+            const cartes = document.querySelectorAll('.carte-freelance');
+
+            cartes.forEach(function(carte) {
+                if (filtre === 'tous' || carte.getAttribute('data-categorie') === filtre) {
+                    carte.style.display = 'block';
                 } else {
-                    card.style.display = "none";
+                    carte.style.display = 'none';
                 }
             });
         });
     });
-});
+}
