@@ -109,5 +109,78 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    // ===== VALIDATION FORMULAIRE =====
+const form = document.getElementById('formulaire-contact');
+if (form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let valide = true;
+
+        // Prénom
+        const prenom = document.getElementById('firstName').value.trim();
+        const errPrenom = document.getElementById('erreur-prenom');
+        if (prenom === '') {
+            errPrenom.textContent = '⚠️ Le prénom est obligatoire.';
+            document.getElementById('firstName').classList.add('is-invalid');
+            valide = false;
+        } else {
+            errPrenom.textContent = '';
+            document.getElementById('firstName').classList.remove('is-invalid');
+            document.getElementById('firstName').classList.add('is-valid');
+        }
+
+        // Nom
+        const nom = document.getElementById('lastName').value.trim();
+        const errNom = document.getElementById('erreur-nom');
+        if (nom === '') {
+            errNom.textContent = '⚠️ Le nom est obligatoire.';
+            document.getElementById('lastName').classList.add('is-invalid');
+            valide = false;
+        } else {
+            errNom.textContent = '';
+            document.getElementById('lastName').classList.remove('is-invalid');
+            document.getElementById('lastName').classList.add('is-valid');
+        }
+
+        // Email
+        const email = document.getElementById('email').value.trim();
+        const errEmail = document.getElementById('erreur-email');
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === '') {
+            errEmail.textContent = '⚠️ L\'email est obligatoire.';
+            document.getElementById('email').classList.add('is-invalid');
+            valide = false;
+        } else if (!regexEmail.test(email)) {
+            errEmail.textContent = '⚠️ Format email invalide.';
+            document.getElementById('email').classList.add('is-invalid');
+            valide = false;
+        } else {
+            errEmail.textContent = '';
+            document.getElementById('email').classList.remove('is-invalid');
+            document.getElementById('email').classList.add('is-valid');
+        }
+
+        // Message
+        const message = document.getElementById('message').value.trim();
+        const errMessage = document.getElementById('erreur-message');
+        if (message.length < 20) {
+            errMessage.textContent = '⚠️ Le message doit contenir au moins 20 caractères.';
+            document.getElementById('message').classList.add('is-invalid');
+            valide = false;
+        } else {
+            errMessage.textContent = '';
+            document.getElementById('message').classList.remove('is-invalid');
+            document.getElementById('message').classList.add('is-valid');
+        }
+
+        // Succès
+        if (valide) {
+            document.getElementById('succes-message').classList.remove('d-none');
+            form.reset();
+            // Supprimer les classes is-valid
+            form.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+        }
+    });
+}
 
 }); // fin DOMContentLoaded

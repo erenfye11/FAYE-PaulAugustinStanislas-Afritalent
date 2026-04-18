@@ -82,19 +82,22 @@
 
                     <div class="col-lg-8">
                         <div class="card border-0 shadow-sm p-4 rounded-4">
-                            <form id="contactForm">
+                            <form id="formulaire-contact" novalidate>
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label for="firstName" class="form-label">Prénom</label>
                                         <input type="text" class="form-control" id="firstName" required>
+                                        <div class="erreur text-danger small" id="erreur-prenom"></div>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="lastName" class="form-label">Nom</label>
                                         <input type="text" class="form-control" id="lastName" required>
+                                        <div class="erreur text-danger small" id="erreur-nom"></div>
                                     </div>
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email Professionnel</label>
                                         <input type="email" class="form-control" id="email" required>
+                                        <div class="erreur text-danger small" id="erreur-email"></div>
                                     </div>
                                     <div class="col-12">
                                         <label for="subject" class="form-label">Sujet</label>
@@ -108,8 +111,12 @@
                                     <div class="col-12">
                                         <label for="message" class="form-label">Message</label>
                                         <textarea class="form-control" id="message" rows="5" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+                                        <div class="erreur text-danger small" id="erreur-message"></div>
                                     </div>
                                     <div class="col-12">
+                                        <div id="succes-message" class="alert alert-success d-none mt-3">
+                                            ✅ Message envoyé avec succès !
+                                        </div>
                                         <button type="submit" class="btn btn-primary px-5 py-2">Envoyer le message</button>
                                     </div>
                                 </div>
